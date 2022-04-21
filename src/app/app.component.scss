@@ -1,0 +1,39 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+
+$my-palette: mat.$purple-palette;
+
+$primary-palette: mat.define-palette(mat.$purple-palette, 700, 500, 800);
+$accent-palette: mat.define-palette(mat.$green-palette, A200, A100, A400);
+// $warn-palette: map.get($color-config, "warn");
+// $is-dark-theme: map.get($color-config, "is-dark");
+
+.content {
+  display: flex;
+  flex-direction: column;
+  max-width: 960px;
+  align-items: center;
+}
+
+form {
+  width: 100%;
+  max-width: 500px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.has-tip {
+  text-decoration: underline dashed;
+}
+
+.result {
+  margin: 8px;
+  width: 100%;
+  max-width: 400px;
+
+  .status {
+    text-align: center;
+  }
+}
