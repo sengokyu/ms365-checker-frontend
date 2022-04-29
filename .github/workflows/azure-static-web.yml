@@ -25,8 +25,9 @@ jobs:
           npm run build:prod
 
       - name: Upload to storage
-        uses: tibor19/static-website-deploy@v1
+        uses: bacongobbler/azure-blob-storage-upload@main
         with:
-          enabled-static-website: "true"
-          folder: "dist"
-          connection-string: ${{ secrets.CONNECTION_STRING }}
+          source_dir: dist
+          container_name: $web
+          connection_string: ${{ secrets.CONNECTION_STRING }}
+          overwrite: "true"
