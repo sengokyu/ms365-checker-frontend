@@ -1,0 +1,32 @@
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: "16.x" # set this to the node version to use
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "npm"
+
+      - name: npm install, build
+        run: |
+          npm install
+          npm run build:prod
+
+      - name: Upload to storage
+        uses: tibor19/static-website-deploy@v1
+        with:
+          enabled-static-website: "true"
+          folder: "dist"
+          connection-string: ${{ secrets.CONNECTION_STRING }}
